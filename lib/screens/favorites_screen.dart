@@ -81,7 +81,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       builder: (ctx) => AlertDialog(
         title: const Text('Clear All Favorites?'),
         content: const Text(
-            'This will permanently delete all saved Pokémon and cannot be undone.'),
+          'This will permanently delete all saved Pokémon and cannot be undone.',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
@@ -100,9 +101,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       await _db.clearAll();
       setState(() => _favorites.clear());
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('All favorites cleared')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('All favorites cleared')));
       }
     }
   }
@@ -124,12 +125,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           // Sort toggle button
           IconButton(
             icon: Icon(
-              _sortOrder == 'id' ? Icons.sort_by_alpha : Icons.format_list_numbered,
+              _sortOrder == 'id'
+                  ? Icons.sort_by_alpha
+                  : Icons.format_list_numbered,
             ),
             tooltip: _sortOrder == 'id' ? 'Sort A–Z' : 'Sort by Number',
             onPressed: _toggleSort,
           ),
-          // Clear All button 
+          // Clear All button
           if (_favorites.isNotEmpty)
             IconButton(
               icon: const Icon(Icons.delete_sweep),
@@ -141,8 +144,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: Colors.red))
           : _favorites.isEmpty
-              ? _buildEmptyState()
-              : _buildFavoritesList(),
+          ? _buildEmptyState()
+          : _buildFavoritesList(),
     );
   }
 
@@ -219,7 +222,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   width: 80,
                   height: 80,
                   color: Colors.grey[200],
-                  child: const Icon(Icons.image_not_supported, color: Colors.grey),
+                  child: const Icon(
+                    Icons.image_not_supported,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
@@ -235,7 +241,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     Text(
                       _capitalize(pokemon.name),
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                     if (pokemon.types.isNotEmpty)
                       Text(

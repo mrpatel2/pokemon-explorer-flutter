@@ -24,7 +24,7 @@ class DatabaseService {
       path,
       version: 1,
       onCreate: (db, version) {
-        //runs only on first app launch 
+        //runs only on first app launch
         return db.execute('''
           CREATE TABLE favorites (
             id INTEGER PRIMARY KEY,
@@ -59,14 +59,10 @@ class DatabaseService {
   // Save a pokemon to favorites
   Future<void> addFavorite(Pokemon pokemon) async {
     final db = await database;
-    await db.insert(
-      'favorites',
-      {
-        ...pokemon.toMap(),
-        'savedAt': DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert('favorites', {
+      ...pokemon.toMap(),
+      'savedAt': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Delete one pokemon by ID

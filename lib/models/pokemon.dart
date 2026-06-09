@@ -27,7 +27,8 @@ class Pokemon {
     return Pokemon(
       id: id,
       name: json['name'] as String,
-      imageUrl: (json['sprites']['front_default'] as String?) ??
+      imageUrl:
+          (json['sprites']['front_default'] as String?) ??
           'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png',
       types: typesList.join(','),
     );
@@ -35,12 +36,7 @@ class Pokemon {
 
   // Convert to a Map for SQLite storage
   Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'imageUrl': imageUrl,
-      'types': types,
-    };
+    return {'id': id, 'name': name, 'imageUrl': imageUrl, 'types': types};
   }
 
   // Build a Pokemon from a SQLite row

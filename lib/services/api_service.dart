@@ -18,13 +18,17 @@ class ApiService {
       final data = jsonDecode(response.body);
       final results = data['results'] as List;
       return results
-          .map((item) => {
-                'name': item['name'] as String,
-                'url': item['url'] as String,
-              })
+          .map(
+            (item) => {
+              'name': item['name'] as String,
+              'url': item['url'] as String,
+            },
+          )
           .toList();
     } else {
-      throw Exception('Failed to load Pokémon list. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to load Pokémon list. Status: ${response.statusCode}',
+      );
     }
   }
 
@@ -39,7 +43,9 @@ class ApiService {
     } else if (response.statusCode == 404) {
       throw Exception('Pokémon "$nameOrId" not found');
     } else {
-      throw Exception('Failed to fetch Pokémon. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to fetch Pokémon. Status: ${response.statusCode}',
+      );
     }
   }
 }

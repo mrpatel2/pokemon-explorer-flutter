@@ -141,7 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${_capitalize(pokemon.name)} removed from favorites'),
+            content: Text(
+              '${_capitalize(pokemon.name)} removed from favorites',
+            ),
             duration: const Duration(seconds: 2),
           ),
         );
@@ -153,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
         try {
           toSave = await _api.fetchPokemonDetail(pokemon.name);
         } catch (_) {
-          toSave = pokemon; 
+          toSave = pokemon;
         }
       }
       await _db.addFavorite(toSave);
@@ -161,7 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${_capitalize(pokemon.name)} saved to favorites! ❤️'),
+            content: Text(
+              '${_capitalize(pokemon.name)} saved to favorites! ❤️',
+            ),
             duration: const Duration(seconds: 2),
           ),
         );
@@ -169,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  //Build Methods 
+  //Build Methods
 
   @override
   Widget build(BuildContext context) {
@@ -265,7 +269,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
                 ),
               ),
             ],
@@ -282,8 +289,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Icon(Icons.catching_pokemon, size: 80, color: Colors.grey),
             SizedBox(height: 16),
-            Text('Search for a Pokémon to get started!',
-                style: TextStyle(color: Colors.grey)),
+            Text(
+              'Search for a Pokémon to get started!',
+              style: TextStyle(color: Colors.grey),
+            ),
           ],
         ),
       );
@@ -342,7 +351,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 80,
                   height: 80,
                   color: Colors.grey[200],
-                  child: const Icon(Icons.image_not_supported, color: Colors.grey),
+                  child: const Icon(
+                    Icons.image_not_supported,
+                    color: Colors.grey,
+                  ),
                 ),
                 loadingBuilder: (_, child, progress) {
                   if (progress == null) return child;
@@ -385,7 +397,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 label: Text(
                                   _capitalize(type),
                                   style: const TextStyle(
-                                      fontSize: 11, color: Colors.white),
+                                    fontSize: 11,
+                                    color: Colors.white,
+                                  ),
                                 ),
                                 backgroundColor: _typeColor(type),
                                 padding: EdgeInsets.zero,
@@ -407,7 +421,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 28,
               ),
               onPressed: () => _toggleFavorite(pokemon),
-              tooltip: isFavorite ? 'Remove from favorites' : 'Save to favorites',
+              tooltip: isFavorite
+                  ? 'Remove from favorites'
+                  : 'Save to favorites',
             ),
           ],
         ),

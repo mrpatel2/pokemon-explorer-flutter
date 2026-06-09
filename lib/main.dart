@@ -38,9 +38,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       // Rebuilds whichever screen is active
       // makes sure FavoritesScreen always loads fresh data from SQLite when you switch to it
-      body: _selectedIndex == 0
-          ? const HomeScreen()
-          : const FavoritesScreen(),
+      body: _selectedIndex == 0 ? const HomeScreen() : const FavoritesScreen(),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: (index) {

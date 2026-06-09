@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferencesService {
   static const String _lastSearchKey = 'last_search';
   static const String _sortOrderKey = 'sort_order';
-  
+
   // Last Search Query
   Future<String> getLastSearch() async {
     final prefs = await SharedPreferences.getInstance();
